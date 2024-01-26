@@ -22,8 +22,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_192717) do
 
   create_table "notes", force: :cascade do |t|
     t.bigint "notebook_id", null: false
-    t.text "content"
+    t.string "name"
+    t.string "type"
     t.string "resource_url"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["notebook_id"], name: "index_notes_on_notebook_id"
