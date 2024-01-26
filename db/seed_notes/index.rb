@@ -1,0 +1,6 @@
+require_relative 'note1'
+require_relative 'note2'
+require_relative 'note3'
+require_relative 'note4'
+require_relative 'note5'
+require_relative 'note6'
