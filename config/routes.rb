@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'tags#index'
+  root 'notebooks#index'
 
   resources :notebooks
   resources :notes
