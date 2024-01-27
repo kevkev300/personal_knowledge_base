@@ -10,7 +10,8 @@
       </div>
     </div>
   </div>
-  <% if action_name == 'show' && controller_name == 'notes' %>
+  <% (broadcasted = false) unless defined?(broadcasted) %>
+  <% if broadcasted || (action_name == 'show' && controller_name == 'notes') %>
     <p class="component--attribute">
       <%= form_with model: NotesTag.new do |form| %>
         <%= form.hidden_field :note_id, value: note.id %>
@@ -34,7 +35,7 @@
       <%= note.content %>
     </p>
   <% end %>
-  <% if action_name != "show" || controller_name != 'notes'%>
+  <% if action_name != "show" || controller_name != 'notes' %>
     <%= link_to "Show this note", note, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this note", edit_note_path(note), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block">

@@ -1,0 +1,9 @@
+<%= turbo_stream.replace :add_tag do %>
+  <%= render 'add_tag' %>
+<% end %>
+<%= turbo_stream.prepend :tag_list do %>
+  <%= render @tag %>
+<% end %>
+<%= turbo_stream.update :tags_count do %>
+  <%= Tag.count %>
+<% end %>

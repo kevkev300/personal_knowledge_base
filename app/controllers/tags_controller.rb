@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   # GET /tags
   def index
-    @tags = Tag.all
+    @tags = Tag.all.order(:name)
   end
 
   # GET /tags/1
@@ -21,11 +21,9 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
 
-    if @tag.save
-      redirect_to @tag, notice: 'Tag was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
-    end
+    return if @tag.save
+
+    render :new, status: :unprocessable_entity
   end
 
   # PATCH/PUT /tags/1

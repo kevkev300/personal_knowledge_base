@@ -1,6 +1,6 @@
 development:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: <%= "redis://:#{Rails.application.credentials.redis_password}@localhost:6379/1" %>
 
 test:
   adapter: test
