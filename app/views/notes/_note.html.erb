@@ -1,22 +1,45 @@
 <div id="<%= dom_id note %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Notebook:</strong>
-    <%= note.notebook_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= note.content %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Resource url:</strong>
-    <%= note.resource_url %>
-  </p>
-
-  <% if action_name != "show" %>
+  <div class="my-5">
+    <span class="block font-medium mb-1"><%= note.notebook.name %></span>
+    <div class="flex">
+      <h2><%= note.name %></h2>
+      <div class="ml-4">
+        <% note.notes_tags.each do |note_tag| %>
+          <%= render 'shared/note_tag', note_tag: note_tag %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if action_name == 'show' && controller_name == 'notes' %>
+    <p class="component--attribute">
+      <%= form_with model: NotesTag.new do |form| %>
+        <%= form.hidden_field :note_id, value: note.id %>
+        <div class="flex items-center">
+          <%= form.label 'Add Tag:', class: 'font-bold mr-3' %>
+          <%= form.hidden_field :note_id, value: note.id %>
+          <%= form.select :tag_id, options_for_select(Tag.not_with_note(note).map { |tag| [tag.name, tag.id] }), { prompt: "Select tag..." }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2", onchange: "this.form.submit()" %>
+        </div>
+      <% end %>
+    </p>
+    <p class="component--attribute">
+      <strong>Note Type:</strong>
+      <%= note.note_type %>
+    </p>
+    <p class="component--attribute">
+      <strong>Resource URL:</strong>
+      <%= note.resource_url %>
+    </p>
+    <p class="component--attribute">
+      <strong class="block">Content:</strong>
+      <%= note.content %>
+    </p>
+  <% end %>
+  <% if action_name != "show" || controller_name != 'notes'%>
     <%= link_to "Show this note", note, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this note", edit_note_path(note), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block">
+      <%= button_to "Destroy this note", note_path(note), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
     <hr class="mt-6">
   <% end %>
 </div>

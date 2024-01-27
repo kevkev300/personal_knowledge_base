@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resources :notebooks
   resources :notes
+  resources :notes_tags
   resources :tags
 end

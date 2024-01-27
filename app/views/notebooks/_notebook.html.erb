@@ -1,11 +1,19 @@
 <div id="<%= dom_id notebook %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1 text-lg">Name: <%= notebook.name %></strong>
-    Notes: <%= notebook.notes.count %>
-  </p>
+  <div class="my-5">
+    <h2>Notebook: <%= notebook.name %></h2>
+    Notes: <span class="components--counter-red"><%= notebook.notes.count %></span>
+  </div>
   <% if action_name != "show" %>
     <%= link_to "Show this notebook", notebook, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this notebook", edit_notebook_path(notebook), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block">
+      <%= button_to "Detroy this notebook", notebook_path(notebook), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
     <hr class="mt-6">
+  <% end %>
+  <% if action_name == 'show' %>
+    <div id="notes" class="min-w-full mt-20">
+      <%= render notebook.notes %>
+    </div>
   <% end %>
 </div>

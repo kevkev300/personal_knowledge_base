@@ -1,11 +1,19 @@
 <div id="<%= dom_id tag %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= tag.name %>
-  </p>
+  <div class="my-5">
+    <h2>Tag: <%= tag.name %></h2>
+    Applied to: <span class="components--counter-red"><%= tag.notes.count %></span>
+  </div>
   <% if action_name != "show" %>
     <%= link_to "Show this tag", tag, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this tag", edit_tag_path(tag), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block">
+      <%= button_to "Detroy this tag", tag_path(tag), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
     <hr class="mt-6">
+  <% end %>
+  <% if action_name == 'show' %>
+    <div id="notes" class="min-w-full mt-20">
+      <%= render tag.notes %>
+    </div>
   <% end %>
 </div>

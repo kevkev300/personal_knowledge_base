@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[ show edit update destroy ]
+  before_action :set_note, only: %i[show edit update destroy]
 
   # GET /notes
   def index
@@ -7,8 +7,7 @@ class NotesController < ApplicationController
   end
 
   # GET /notes/1
-  def show
-  end
+  def show; end
 
   # GET /notes/new
   def new
@@ -16,15 +15,14 @@ class NotesController < ApplicationController
   end
 
   # GET /notes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /notes
   def create
     @note = Note.new(note_params)
 
     if @note.save
-      redirect_to @note, notice: "Note was successfully created."
+      redirect_to @note, notice: 'Note was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +31,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
-      redirect_to @note, notice: "Note was successfully updated.", status: :see_other
+      redirect_to @note, notice: 'Note was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,17 +40,18 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
-    redirect_to notes_url, notice: "Note was successfully destroyed.", status: :see_other
+    redirect_to notes_url, notice: 'Note was successfully destroyed.', status: :see_other
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.require(:note).permit(:notebook_id, :content, :resource_url)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def note_params
+    params.require(:note).permit(:notebook_id, :name, :note_type, :content, :resource_url)
+  end
 end

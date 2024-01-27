@@ -1,0 +1,7 @@
+<%# locals: (note_tag:) %>
+<div class="component--tag">
+  <%= link_to note_tag.tag.name, note_tag.tag %>
+  <div class="inline-block font-semilight text-gray-500 ml-2">
+    <%= button_to 'x', notes_tag_path(note_tag), method: :delete %>
+  </div>
+</div>

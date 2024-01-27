@@ -217,7 +217,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  debug
+  debug (~> 1.9)
   importmap-rails
   pg (~> 1.1)
   puma (~> 5.0)
