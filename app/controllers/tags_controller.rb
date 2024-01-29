@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   # GET /tags
   def index
-    @tags = Tag.all.order(:name)
+    @tags = Tag.all.order(id: :desc)
   end
 
   # GET /tags/1
@@ -11,11 +11,15 @@ class TagsController < ApplicationController
 
   # GET /tags/new
   def new
-    @tag = Tag.new
+    flash[:show_new] = true
+    redirect_to tags_path
   end
 
   # GET /tags/1/edit
-  def edit; end
+  def edit
+    flash[:show_edit] = @tag.id
+    redirect_to tags_path
+  end
 
   # POST /tags
   def create
@@ -29,7 +33,7 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   def update
     if @tag.update(tag_params)
-      redirect_to @tag, notice: 'Tag was successfully updated.', status: :see_other
+      redirect_to tags_path, notice: 'Tag was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end

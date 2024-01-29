@@ -1,3 +1,5 @@
-<%= turbo_frame_tag :add_tag do %>
+<% if flash[:show_new].present? %>
+  <%= render "form", tag: Tag.new %>
+<% else %>
   <%= link_to "New tag", new_tag_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 <% end %>
