@@ -25,9 +25,11 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
 
-    return if @tag.save
-
-    render :new, status: :unprocessable_entity
+    if @tag.save
+      redirect_to tags_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /tags/1
