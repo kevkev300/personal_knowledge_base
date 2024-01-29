@@ -1,4 +1,7 @@
 <%= turbo_stream_from @note %>
+<% @note.tags.each do |tag| %>
+  <%= turbo_stream_from tag %>
+<% end %>
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
