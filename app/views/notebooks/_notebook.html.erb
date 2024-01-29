@@ -13,7 +13,10 @@
   <% end %>
   <% if action_name == 'show' %>
     <div id="notes" class="min-w-full mt-20">
-      <%= render notebook.notes %>
+      <% notebook.notes.each do |note| %>
+        <%= turbo_stream_from note %>
+        <%= render note %>
+      <% end %>
     </div>
   <% end %>
 </div>
