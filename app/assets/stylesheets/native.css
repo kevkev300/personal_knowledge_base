@@ -1,0 +1,7 @@
+.turbo-native-hidden {
+  display: none !important;
+}
+
+.turbo-native-shown {
+  display: block !important;
+}
