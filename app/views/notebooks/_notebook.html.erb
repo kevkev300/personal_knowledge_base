@@ -12,11 +12,6 @@
     <hr class="mt-6">
   <% end %>
   <% if action_name == 'show' %>
-    <div id="notes" class="min-w-full mt-20">
-      <% notebook.notes.each do |note| %>
-        <%= turbo_stream_from note %>
-        <%= render note %>
-      <% end %>
-    </div>
+    <%= render notebook.notes %>
   <% end %>
 </div>
