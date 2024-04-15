@@ -7,6 +7,8 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'native', media: 'all', 'data-turbo-track': 'reload' if turbo_native_app? %>
+
     <%= javascript_importmap_tags %>
     <%= turbo_refreshes_with method: :morph  %>
     <%= turbo_refresh_scroll_tag :preserve %>
